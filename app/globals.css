@@ -1,0 +1,258 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-display);
+  --color-live: var(--live);
+  --color-live-foreground: var(--live-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --font-heading: var(--font-display, var(--font-sans));
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(0.995 0 0);
+  --foreground: oklch(0.15 0 0); /* noir du logo */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0 0);
+
+  /* Rouge du logo : liens, boutons, éléments de marque */
+  --primary: oklch(0.56 0.23 27);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+
+  /* Noir : badges, « à la une », survols */
+  --accent: oklch(0.2 0 0);
+  --accent-foreground: oklch(0.99 0 0);
+
+  --destructive: oklch(0.45 0.2 27);
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.56 0.23 27 / 50%);
+
+  /* Spécifiques sport */
+  --live: oklch(0.56 0.23 27); /* pastille « EN DIRECT » / S'abonner */
+  --live-foreground: oklch(0.99 0 0);
+  --success: oklch(0.62 0.17 150); /* victoire (reste vert : sémantique) */
+  --warning: oklch(0.8 0.16 85); /* carton jaune, report */
+
+  --chart-1: oklch(0.56 0.23 27);
+  --chart-2: oklch(0.2 0 0);
+  --chart-3: oklch(0.65 0.18 35);
+  --chart-4: oklch(0.45 0 0);
+  --chart-5: oklch(0.75 0 0);
+
+  --radius: 0.5rem;
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.56 0.23 27);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.96 0 0);
+  --sidebar-accent-foreground: oklch(0.2 0 0);
+  --sidebar-border: oklch(0.92 0 0);
+  --sidebar-ring: oklch(0.56 0.23 27 / 50%);
+}
+
+.dark {
+  --background: oklch(0.14 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.19 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.19 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+
+  --primary: oklch(0.65 0.23 27); /* rouge éclairci pour le contraste */
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.25 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.25 0 0);
+  --muted-foreground: oklch(0.72 0 0);
+
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.15 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.65 0.23 27 / 50%);
+
+  --live: oklch(0.65 0.23 27);
+  --live-foreground: oklch(0.99 0 0);
+  --success: oklch(0.75 0.19 150);
+  --warning: oklch(0.82 0.15 85);
+
+  --chart-1: oklch(0.65 0.23 27);
+  --chart-2: oklch(0.97 0 0);
+  --chart-3: oklch(0.72 0.17 35);
+  --chart-4: oklch(0.6 0 0);
+  --chart-5: oklch(0.4 0 0);
+
+  --sidebar: oklch(0.19 0 0);
+  --sidebar-foreground: oklch(0.97 0 0);
+  --sidebar-primary: oklch(0.65 0.23 27);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.25 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.65 0.23 27 / 50%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ---------- Échelle typographique ---------- */
+
+/* Titres */
+@utility text-display {
+  /* Une / titre principal de la home */
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+@utility text-h1 {
+  /* Titre d'article */
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+
+@utility text-h2 {
+  /* Titre de section */
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+@utility text-h3 {
+  /* Titre de carte d'article */
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.15;
+}
+
+/* Texte */
+@utility text-lead {
+  /* Chapô d'article */
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+@utility text-body {
+  /* Corps d'article */
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+@utility text-caption {
+  /* Légende photo, crédit, date */
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+/* Étiquettes */
+@utility text-kicker {
+  /* Rubrique au-dessus du titre */
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+@utility text-badge {
+  /* Pastilles : EN DIRECT, VIDÉO... */
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Chiffres */
+@utility text-score {
+  /* Scores, grands chiffres */
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility text-stat {
+  /* Classements, tableaux */
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+}
