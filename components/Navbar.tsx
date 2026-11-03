@@ -41,53 +41,28 @@ export function NavComponent() {
 
   return (
     <header className='sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75'>
-      {/* Row 1: logo + actions */}
-      <div className='mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6'>
-        <Link
-          href='/'
-          className='text-h3 text-primary'
-          aria-label='Mian Sports, accueil'
-        >
-          <Link href='/' aria-label='Mian Sports, accueil' className='shrink-0'>
-            <Image
-              src={logo}
-              alt='Mian Sports'
-              width={1896}
-              height={830}
-              priority
-              className='h-11 w-auto'
-            />
-          </Link>
-        </Link>
-
-        <div className='flex items-center gap-2'>
-          <Link
-            href='/direct'
-            className='text-badge inline-flex items-center gap-1.5 rounded-full bg-live px-3 py-2 text-live-foreground'
-          >
-            {"S'abonner"}
-          </Link>
-
+      <div className='mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 sm:px-6'>
+        {/* Gauche : burger */}
+        <div className='flex items-center justify-start'>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
               render={
                 <Button
                   variant='ghost'
                   size='icon'
-                  className='lg:hidden'
                   aria-label='Ouvrir le menu'
                 />
               }
             >
               <Menu className='size-5' />
             </SheetTrigger>
-            <SheetContent side='right' className='w-80 overflow-y-auto'>
+            <SheetContent side='left' className='w-80 overflow-y-auto sm:w-96'>
               <SheetHeader>
                 <SheetTitle className='text-h3 text-primary'>Menu</SheetTitle>
               </SheetHeader>
               <nav
                 className='flex flex-col gap-1 px-4 pb-6'
-                aria-label='Navigation mobile'
+                aria-label='Navigation principale'
               >
                 <Link
                   href='/'
@@ -121,42 +96,33 @@ export function NavComponent() {
             </SheetContent>
           </Sheet>
         </div>
-      </div>
 
-      {/* Row 2 (desktop): toutes les rubriques en liens simples */}
-      <nav
-        className='hidden border-t border-border lg:block'
-        aria-label='Navigation principale'
-      >
-        <div className='mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-1 px-4 py-1 sm:px-6'>
+        {/* Centre : logo */}
+        <Link
+          href='/'
+          aria-label='Mian Sports, accueil'
+          className='justify-self-center'
+        >
+          <Image
+            src={logo}
+            alt='Mian Sports'
+            width={1896}
+            height={830}
+            priority
+            className='h-11 w-auto'
+          />
+        </Link>
+
+        {/* Droite : S'abonner */}
+        <div className='flex items-center justify-end'>
           <Link
-            href='/'
-            aria-current={pathname === '/' ? 'page' : undefined}
-            className={cn(
-              'rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-muted',
-              pathname === '/' ? 'text-primary' : 'text-foreground/80',
-            )}
+            href='/direct'
+            className='text-badge inline-flex items-center gap-1.5 rounded-full bg-live px-3 py-2 text-live-foreground'
           >
-            Accueil
+            {"S'abonner"}
           </Link>
-
-          {NAV_GROUPS.map((group) => (
-            <Link
-              key={group.slug}
-              href={group.href}
-              aria-current={isActive(pathname, group.href) ? 'page' : undefined}
-              className={cn(
-                'rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-muted',
-                isGroupActive(pathname, group)
-                  ? 'text-primary'
-                  : 'text-foreground/80',
-              )}
-            >
-              {group.label}
-            </Link>
-          ))}
         </div>
-      </nav>
+      </div>
     </header>
   )
 }
