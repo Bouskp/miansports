@@ -74,7 +74,6 @@ export default async function HomePage() {
         return (
           <Fragment key={s.slug}>
             <Section title={titleOf(s.slug)} slug={s.slug} posts={posts} />
-            {i === 1 && <MagazineSection />}
           </Fragment>
         )
       })}

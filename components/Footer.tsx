@@ -11,9 +11,6 @@ const FOOTER_GROUPS = NAV_GROUPS.filter((g) => g.slug !== 'non-classe')
 const SITE_LINKS = [
   { label: 'À propos', href: '/a-propos' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Publicité', href: '/publicite' },
-  { label: 'Mentions légales', href: '/mentions-legales' },
-  { label: 'Confidentialité', href: '/confidentialite' },
 ]
 
 const SOCIAL_LINKS = [
