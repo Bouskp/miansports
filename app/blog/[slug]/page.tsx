@@ -154,6 +154,11 @@ export default async function BlogPostPage({ params }: Props) {
               style={{ objectPosition: card.focus }}
               className='object-cover'
             />
+            {card.figcaption && (
+              <figcaption className='absolute bottom-0 left-0 right-0 bg-black/50 px-4 py-2 text-caption text-white'>
+                {card.figcaption}
+              </figcaption>
+            )}
           </div>
         )}
 

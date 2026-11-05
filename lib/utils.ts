@@ -115,6 +115,7 @@ export type PostCard = {
   image: string | null
   focus?: string
   category: { name: string; slug: string } | null
+  figcaption?: string
 }
 
 export function toCard(p: Post): PostCard {
@@ -129,5 +130,8 @@ export function toCard(p: Post): PostCard {
     image: p._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null,
     focus: p.focal_point?.object_position ?? '50% 50%',
     category: cat ? { name: decode(cat.name), slug: cat.slug } : null,
+    figcaption: p._embedded?.['wp:featuredmedia']?.[0]?.caption?.rendered
+      ? decode(p._embedded['wp:featuredmedia'][0].caption.rendered)
+      : undefined,
   }
 }
