@@ -1,7 +1,7 @@
 import { Post } from './wordpress.d'
+import * as he from 'he'
 
 export { cn } from 'cn'
-import * as he from 'he'
 
 export type Category = {
   id: number
@@ -104,7 +104,14 @@ const NAMED: Record<string, string> = {
   '&gt;': '>',
 }
 
-export const decode = (s: string) => he.decode(s)
+export const decode = (s: string) =>
+  s
+    .replace(/<[^>]+>/g, '')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/&(amp|quot|apos|nbsp|lt|gt);/g, (m) => NAMED[m])
+    .trim()
+
+export const decode2 = (s: string) => he.decode(s)
 
 export type PostCard = {
   id: number
@@ -115,7 +122,7 @@ export type PostCard = {
   image: string | null
   focus?: string
   category: { name: string; slug: string } | null
-  figcaption?: string
+  figcaption?: string | null
 }
 
 export function toCard(p: Post): PostCard {
@@ -124,14 +131,14 @@ export function toCard(p: Post): PostCard {
   return {
     id: p.id,
     slug: p.slug,
-    title: decode(p.title.rendered),
-    excerpt: decode(p.excerpt.rendered),
+    title: decode(decode2(p.title.rendered)),
+    excerpt: decode(decode2(p.excerpt.rendered)),
     date: p.date,
     image: p._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null,
     focus: p.focal_point?.object_position ?? '50% 50%',
-    category: cat ? { name: decode(cat.name), slug: cat.slug } : null,
+    category: cat ? { name: decode(decode2(cat.name)), slug: cat.slug } : null,
     figcaption: p._embedded?.['wp:featuredmedia']?.[0]?.caption?.rendered
-      ? decode(p._embedded['wp:featuredmedia'][0].caption.rendered)
-      : undefined,
+      ? decode(decode2(p._embedded['wp:featuredmedia'][0].caption.rendered))
+      : null,
   }
 }
