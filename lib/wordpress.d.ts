@@ -14,8 +14,7 @@ interface WPEntity {
 }
 
 interface FocalPoint {
-  x: string // ex: "53%"
-  y: string // ex: "33%"
+  object_position: string
 }
 
 interface RenderedContent {

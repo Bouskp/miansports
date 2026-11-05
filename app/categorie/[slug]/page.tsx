@@ -6,6 +6,9 @@ import { notFound, redirect } from 'next/navigation'
 import { getCategoryPage } from '@/lib/home-data'
 import { NAV_GROUPS, type NavGroup } from '@/lib/nav-categories'
 import { cn } from '@/lib/utils'
+import * as he from 'he'
+
+export const decode = (s: string) => he.decode(s)
 
 const PER_PAGE = 12
 
@@ -75,6 +78,13 @@ export default async function CategoriePage({ params, searchParams }: Props) {
     month: 'long',
     year: 'numeric',
   })
+  const plain = (html: string) =>
+    html
+      .replace(/<[^>]*>/g, '')
+      .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+      .replace(/&amp;/g, '&')
+      .replace(/&nbsp;/g, ' ')
+      .trim()
 
   return (
     <div className='mx-auto max-w-7xl px-4 py-8 sm:px-6'>
@@ -148,10 +158,12 @@ export default async function CategoriePage({ params, searchParams }: Props) {
                   {fmt.format(new Date(p.date))}
                 </time>
                 <h2 className='text-h3 mt-1 line-clamp-3 group-hover:text-primary'>
-                  {p.title}
+                  {decode(p.title)}
                 </h2>
                 {p.excerpt && (
-                  <p className='text-caption mt-2 line-clamp-2'>{p.excerpt}</p>
+                  <p className='text-caption mt-2 line-clamp-2'>
+                    {decode(p.excerpt)}
+                  </p>
                 )}
               </div>
             </Link>

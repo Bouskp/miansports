@@ -76,6 +76,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const { raw, card } = post
+  console.log(card.focus)
   const cat = mainCategory(raw.categories)
   const catLabel = cat ? (LABEL_BY_SLUG.get(cat.slug) ?? cat.name) : null
   const author = raw._embedded?.author?.[0]?.name

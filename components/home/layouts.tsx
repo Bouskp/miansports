@@ -4,7 +4,9 @@ import Link from 'next/link'
 import { categoryHref } from '@/lib/nav-categories'
 import { cn } from '@/lib/utils'
 import type { PostCard as Post } from '@/lib/utils'
+import * as he from 'he'
 
+const decode = (s: string) => he.decode(s)
 const postHref = (p: Post) => `/blog/${p.slug}`
 const fmt = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'short' })
 const when = (p: Post) => fmt.format(new Date(p.date))
@@ -127,7 +129,7 @@ function OverlayTile({
             'line-clamp-3',
           )}
         >
-          {post.title}
+          {decode(post.title)}
         </h3>
         <span className='text-caption text-white/70'>{when(post)}</span>
       </div>
@@ -162,7 +164,7 @@ export function Hero({ posts }: { posts: Post[] }) {
             <span className='text-badge inline-block rounded bg-accent px-2 py-1 text-accent-foreground'>
               {main.category?.name ?? 'À la une'}
             </span>
-            <h1 className='text-h1 mt-3'>{main.title}</h1>
+            <h1 className='text-h1 mt-3'>{decode(main.title)}</h1>
           </div>
         </Link>
 
@@ -181,7 +183,7 @@ export function Hero({ posts }: { posts: Post[] }) {
               <div className='min-w-0'>
                 <span className='text-kicker'>{p.category?.name}</span>
                 <p className='text-h3 line-clamp-3 text-base group-hover:text-primary'>
-                  {p.title}
+                  {decode(p.title)}
                 </p>
               </div>
             </Link>
@@ -207,7 +209,7 @@ export function FeaturedList({ title, slug, posts }: LayoutProps) {
             sizes='(min-width:1024px) 60vw, 100vw'
           />
           <h3 className='text-h2 mt-3 group-hover:text-primary'>
-            {main.title}
+            {decode(main.title)}
           </h3>
           <p className='text-lead mt-2 line-clamp-2 text-base'>
             {main.excerpt}
@@ -227,7 +229,7 @@ export function FeaturedList({ title, slug, posts }: LayoutProps) {
                 />
                 <div>
                   <p className='text-h3 line-clamp-2 text-base group-hover:text-primary'>
-                    {p.title}
+                    {decode(p.title)}
                   </p>
                   <span className='text-caption'>{when(p)}</span>
                 </div>
@@ -261,7 +263,7 @@ export function CardGrid({ title, slug, posts }: LayoutProps) {
             <div className='p-4'>
               <span className='text-caption'>{when(p)}</span>
               <h3 className='text-h3 mt-1 line-clamp-3 group-hover:text-primary'>
-                {p.title}
+                {decode(p.title)}
               </h3>
             </div>
           </Link>
@@ -286,7 +288,7 @@ export function Carousel({ title, slug, posts }: LayoutProps) {
           >
             <Thumb post={p} className='aspect-[3/4] rounded-xl' sizes='288px' />
             <h3 className='text-h3 mt-3 line-clamp-3 group-hover:text-primary'>
-              {p.title}
+              {decode(p.title)}
             </h3>
             <span className='text-caption'>{when(p)}</span>
           </Link>
@@ -321,7 +323,7 @@ export function DarkBand({ title, slug, posts }: LayoutProps) {
               )}
               <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent' />
               <div className='absolute inset-x-0 bottom-0 p-5'>
-                <h3 className='text-h3 line-clamp-3'>{p.title}</h3>
+                <h3 className='text-h3 line-clamp-3'>{decode(p.title)}</h3>
                 <span className='text-caption text-white/70'>{when(p)}</span>
               </div>
             </Link>
@@ -351,7 +353,7 @@ export function Ranked({ title, slug, posts }: LayoutProps) {
                   {i + 1}
                 </span>
                 <h3 className='text-h3 line-clamp-2 group-hover:text-primary'>
-                  {p.title}
+                  {decode(p.title)}
                 </h3>
               </Link>
             </li>
@@ -407,7 +409,7 @@ export function ColorBand({ title, slug, posts }: LayoutProps) {
               className='aspect-video rounded-xl'
               sizes='(min-width:1024px) 50vw, 100vw'
             />
-            <h3 className='text-h2 mt-3'>{main.title}</h3>
+            <h3 className='text-h2 mt-3'>{decode(main.title)}</h3>
           </Link>
           <ul className='divide-y divide-white/20'>
             {rest.slice(0, 3).map((p) => (
@@ -426,7 +428,7 @@ export function ColorBand({ title, slug, posts }: LayoutProps) {
                       {when(p)}
                     </span>
                     <p className='text-h3 line-clamp-2 text-base group-hover:underline'>
-                      {p.title}
+                      {decode(p.title)}
                     </p>
                   </div>
                 </Link>
@@ -457,7 +459,7 @@ export function TwoUp({ title, slug, posts }: LayoutProps) {
             />
             <span className='text-caption mt-3 block'>{when(p)}</span>
             <h3 className='text-h2 mt-1 line-clamp-2 group-hover:text-primary'>
-              {p.title}
+              {decode(p.title)}
             </h3>
           </Link>
         ))}

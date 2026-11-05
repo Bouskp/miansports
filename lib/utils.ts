@@ -1,6 +1,7 @@
 import { Post } from './wordpress.d'
 
 export { cn } from 'cn'
+import * as he from 'he'
 
 export type Category = {
   id: number
@@ -103,12 +104,7 @@ const NAMED: Record<string, string> = {
   '&gt;': '>',
 }
 
-export const decode = (s: string) =>
-  s
-    .replace(/<[^>]+>/g, '')
-    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
-    .replace(/&(amp|quot|apos|nbsp|lt|gt);/g, (m) => NAMED[m])
-    .trim()
+export const decode = (s: string) => he.decode(s)
 
 export type PostCard = {
   id: number
@@ -131,7 +127,7 @@ export function toCard(p: Post): PostCard {
     excerpt: decode(p.excerpt.rendered),
     date: p.date,
     image: p._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null,
-    focus: p.focal_point ? `${p.focal_point.x} ${p.focal_point.y}` : undefined,
+    focus: p.focal_point?.object_position ?? '50% 50%',
     category: cat ? { name: decode(cat.name), slug: cat.slug } : null,
   }
 }
