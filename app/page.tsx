@@ -37,6 +37,7 @@ const SECTIONS: {
   { slug: 'football', layout: FeaturedList, count: 5 },
   { slug: 'basketball', layout: CardGrid, count: 4 },
   { slug: 'autre-sport-collectifs', layout: HorizontalCards, count: 4 },
+  { slug: 'dossiers-speciaux-et-analyse', layout: CardGrid, count: 4 },
   { slug: 'sport-business', layout: TextColumns, count: 3 },
   { slug: 'portrait-interviews', layout: PortraitRow, count: 4 },
   { slug: 'combat-arts-martiaux', layout: DarkBand, count: 4 },
