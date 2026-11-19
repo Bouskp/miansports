@@ -2,6 +2,7 @@ import { Barlow_Condensed, Inter, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { NavComponent } from '@/components/Navbar'
 import { FooterComponent } from '@/components/Footer'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const body = Inter({
   subsets: ['latin'],
@@ -34,6 +35,7 @@ export default function RootLayout({
       <NavComponent />
       <body>{children}</body>
       <FooterComponent />
+      <GoogleAnalytics gaId='G-NPW84JQGK6' />
     </html>
   )
 }
